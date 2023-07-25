@@ -52,11 +52,11 @@ function OpensLoop()
        for i = 1, num_opens do
            if opens[i].Name == "Open" then
                Player3.Character.HumanoidRootPart.CFrame = opens[i].CFrame
-               wait(10)
+               wait(9)
            end
        end
    i = 1
-   wait(10)
+   wait(7)
    end
 end
 
