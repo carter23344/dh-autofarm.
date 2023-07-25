@@ -1,0 +1,69 @@
+if _G.unlockfps == true then
+    setfpscap(200)
+elseif
+     _G.unlockfps == false then
+        setfpscap(60)
+    end
+
+
+
+if _G.fpsbooster == true then
+    loadstring(game:HttpGet(('https://pastebin.com/raw/FAvtLKXx'),true))()
+end
+-- // Variables
+local Player3 = game:GetService("Players").LocalPlayer
+local Drop = game:GetService("Workspace").Ignored.Drop
+local Cashiers = game:GetService("Workspace").Cashiers
+local opens = Cashiers:GetDescendants()
+local num_opens = #opens
+
+function Farm()
+    while _G.AutoFarm do
+        for _,f in pairs(Player3:FindFirstChildOfClass("Backpack"):GetChildren()) do
+            if f:IsA("Tool") or f:IsA("HopperBin") then
+                if f.Name == "Combat" then
+                    f.Parent = Player3.Character
+                end
+            end
+        end
+        wait()
+    end
+ end
+
+ function farmLoop()
+    while _G.AutoFarm do
+        for _,obj in pairs(Drop:GetDescendants()) do
+            if obj:IsA("ClickDetector") then
+                local pos1 = obj.Parent.Position
+                local pos2 = Player3.Character.HumanoidRootPart.Position
+                local distance = (pos1 - pos2).Magnitude
+                if distance <= 20 then
+                    fireclickdetector(obj)
+                end
+            end
+        end
+        mouse1click()
+        wait()
+    end
+ end
+
+function OpensLoop()
+   while _G.AutoFarm do
+       for i = 1, num_opens do
+           if opens[i].Name == "Open" then
+               Player3.Character.HumanoidRootPart.CFrame = opens[i].CFrame
+               wait(10)
+           end
+       end
+   i = 1
+   wait(10)
+   end
+end
+
+
+
+
+ -- // Main
+coroutine.wrap(Farm)()
+coroutine.wrap(farmLoop)()
+coroutine.wrap(OpensLoop)()
